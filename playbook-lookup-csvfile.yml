@@ -10,6 +10,8 @@
 
   vars:
           ip_poweredge_svr02: "{{ lookup('csvfile', 'pe02 file=~/mycode/files/ip_data.csv delimiter=,') }}"
+          lookup_csv1: "{{ lookup('csvfile', 'pe06 file=~/mycode/files/ip_data.csv delimiter=, col=3') }}" # displays, "online"
+          lookup_csv2: "{{ lookup('csvfile', 'pe06 file=~/mycode/files/ip_data.csv delimiter=, col=2') }}" # displays, "online"
 
   tasks:
           - name: Display the IP of the var ip_poweredge_svr02 as taken from our CSV file
@@ -17,6 +19,9 @@
                     var: ip_poweredge_svr02  # displays, "192.168.44.21"
 
 
-          - name: Display the status of pe06 as taken from our CSV file
+          - name: Display the status of pe06 as taken from our CSV file col 3
             debug:
                     var: lookup('csvfile', 'pe06 file=~/mycode/files/ip_data.csv delimiter=, col=3') # displays, "online"
+          - name: Display the status of pe06 as taken from our CSV file col 2
+            debug:
+                    var: lookup('csvfile', 'pe06 file=~/mycode/files/ip_data.csv delimiter=, col=2') # displays, "online"
